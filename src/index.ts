@@ -1,17 +1,26 @@
 import express from "express";
 import cors from "cors";
-import * as dotenv from "dotenv"; // Mudança aqui
+import dotenv from "dotenv";
+import userRoutes from "./routes/user.routes";
+import productRoutes from "./routes/product.routes";
+import favoriteRoutes from "./routes/favorite.routes"; // 📌 Adicionando rotas de favoritos
 
-import userRoutes from "./routes/user.routes"
-
-dotenv.config();
+dotenv.config(); // Carrega as variáveis do .env
 
 const app = express();
 
+// 📌 Middlewares globais
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/users", userRoutes);
+// 📌 Rotas
+app.use("/api/auth", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/favorites", favoriteRoutes); // 📌 Adicionando rota de favoritos
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const PORT = process.env.PORT || 8080;
+
+// 📌 Iniciando o servidor
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
