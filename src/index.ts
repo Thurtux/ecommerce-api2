@@ -11,7 +11,7 @@ const app = express();
 
 // 📌 Corrigindo CORS para aceitar autenticação (cookies/tokens)
 app.use(cors({
-  origin: ["http://localhost:3000", "https://ecommercesolid4.web.app"], // 🔥 Adiciona o Firebase
+  origin: ["localhost:3000", "https://ecommercesolid4.web.app"], // 🔥 Adiciona o Firebase
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
